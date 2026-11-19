@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Belated Happy Birthday Ayush! ❤️😂</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Pacifico&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #1d2671 0%, #c33764 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      color: #222;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.96);
+      width: 100%;
+      max-width: 550px;
+      border-radius: 24px;
+      padding: 28px 22px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.28);
+      text-align: center;
+      animation: popIn 0.45s ease;
+    }
+    @keyframes popIn {
+      from { transform: scale(0.92); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .badge {
+      display: inline-block;
+      background: #ffe5ec;
+      color: #c9184a;
+      padding: 6px 14px;
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    h1 { font-size: 24px; color: #1d2671; margin-bottom: 10px; }
+    .cursive { font-family: 'Pacifico', cursive; font-size: 28px; color: #c33764; margin-bottom: 16px; }
+    p.sub { font-size: 14px; color: #555; margin-bottom: 18px; }
+    .options { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
+    button.opt-btn {
+      background: #f8f9fa;
+      border: 2px solid #dee2e6;
+      color: #222;
+      padding: 13px 16px;
+      border-radius: 14px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    button.opt-btn:hover {
+      background: #c33764;
+      color: #fff;
+      border-color: #c33764;
+      transform: translateY(-2px);
+    }
+    .hidden { display: none; }
+    .game-area {
+      background: #fff0f3;
+      border: 2px dashed #c33764;
+      border-radius: 16px;
+      margin: 15px 0;
+      position: relative;
+      height: 145px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    #target-item {
+      position: absolute;
+      left: 20px;
+      top: 45px;
+      font-size: 36px;
+      transition: 0.25s ease;
+      user-select: none;
+    }
+    .wish-box {
+      text-align: left;
+      background: #fff8f9;
+      border: 2px dashed #ff758f;
+      border-radius: 18px;
+      padding: 20px;
+      margin-top: 14px;
+      font-size: 14.5px;
+      line-height: 1.75;
+      color: #222;
+      max-height: 55vh;
+      overflow-y: auto;
+    }
+    .wish-box p { margin-bottom: 14px; }
+    .gallery {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+    .gallery img {
+      width: 135px;
+      height: 155px;
+      object-fit: cover;
+      border-radius: 16px;
+      border: 3px solid #c33764;
+      box-shadow: 0 6px 15px rgba(195, 55, 100, 0.25);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- STEP 1: VIBE CHECK -->
+  <div class="card" id="step-vibe">
+    <span class="badge">LEVEL 1 • AYUSH VIBE CHECK</span>
+    <h1>Kya Haal Hai Bhai? 😎</h1>
+    <p class="sub">Wish kholne se pehle batao aaj Ayush bhai ka kya scene hai?</p>
+    <div class="options">
+      <button class="opt-btn" onclick="nextStep('step-vibe', 'step-game')">🔥 Full Chill & Masti Mode</button>
+      <button class="opt-btn" onclick="nextStep('step-vibe', 'step-game')">😂 Dost Ki Late Wish Par Hasne Ka Mood</button>
+      <button class="opt-btn" onclick="nextStep('step-vibe', 'step-game')">⚡ Next Level Grind Mode</button>
+    </div>
+  </div>
+
+  <!-- STEP 2: QUICK TAP GAME -->
+  <div class="card hidden" id="step-game">
+    <span class="badge">LEVEL 2 • REFLEX CHECK 🎮</span>
+    <h1>3 Baar Tap Karo!</h1>
+    <p class="sub">Message unlock karne ke liye <strong>🎉</strong> par <strong>3 baar</strong> tap karo!</p>
+    <div class="game-area" onclick="tapTarget()">
+      <div id="target-item">🎉</div>
+    </div>
+    <p id="tap-score" style="font-weight: 700; color: #c33764;">Score: 0 / 3</p>
+  </div>
+
+  <!-- STEP 3: FINAL WISH -->
+  <div class="card hidden" id="step-wish">
+    <span class="badge">BROTHERHOOD SPECIAL</span>
+    <div class="cursive">Happy Birthday, Ayush! ❤️😂</div>
+
+    <div class="wish-box">
+      <p>Sorry bro, belated happy birthday, Ayush! ❤️😂</p>
+
+      <p>Main aakhirkaar seekh hi gaya bhai! Itni mehnat ke baad finally bana liya. 😂 Anyway, I hope you had an amazing birthday. May this year bring you lots of happiness, success, good health and everything you’ve been wishing for. Keep smiling, keep growing and enjoy your life to the fullest. Sorry for the late wish, bro. Once again, happy birthday! 🫂❤️</p>
+
+      <div class="gallery">
+        <img src="friend1.jpg" alt="Ayush 1" onerror="this.style.display='none'">
+        <img src="friend2.jpg" alt="Ayush 2" onerror="this.style.display='none'">
+        <img src="friend3.jpg" alt="Ayush 3" onerror="this.style.display='none'">
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function nextStep(currentId, nextId) {
+      document.getElementById(currentId).classList.add('hidden');
+      document.getElementById(nextId).classList.remove('hidden');
+    }
+
+    let score = 0;
+    function tapTarget() {
+      score++;
+      document.getElementById('tap-score').innerText = `Score: ${score} / 3`;
+      const item = document.getElementById('target-item');
+
+      if (score >= 3) {
+        setTimeout(() => {
+          nextStep('step-game', 'step-wish');
+          confetti({ particleCount: 160, spread: 85, origin: { y: 0.6 } });
+        }, 350);
+      } else {
+        item.style.left = Math.floor(Math.random() * 250) + 'px';
+        item.style.top = Math.floor(Math.random() * 85) + 'px';
+      }
+    }
+  </script>
+</body>
+</html>
